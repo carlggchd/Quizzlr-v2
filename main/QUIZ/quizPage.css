@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Merriweather:wght@300&family=Noto+Sans+Tagbanwa&family=Oswald:wght@300&family=Roboto:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header {
+    background-color: rgba(156, 6, 6, 0.856);
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Merriweather', serif;
+  }
+
+  .header h1 {
+    font-size: 50px;
+    margin: 0;
+  }
+
+  .header p {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 30%;
+    margin: 20px;
+    text-align: center;
+  }
+
+  .card h2 {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+
+  .card p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  .card button {
+    background-color: rgba(156, 6, 6, 0.856);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+  }
+
+  .card button:hover {
+    background-color: #023e8a;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .card {
+      width: 80%;
+    }
+  }

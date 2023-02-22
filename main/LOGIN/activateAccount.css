@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Merriweather:wght@300&family=Noto+Sans+Tagbanwa&family=Oswald:wght@300&family=Roboto:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color:rgb(165, 10, 10);
+    color: #fff;
+    text-align: center;
+    padding: 2%;
+  }
+
+  #review-section {
+    display: none;
+  }
+  
+  
+  .container {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 2%;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 1%;
+  }
+  
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  button {
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #023e8a;
+  }
+  
+  footer {
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    text-align: center;
+    padding: 1%;
+    bottom: 0;
+    width: 100%;
+  }
