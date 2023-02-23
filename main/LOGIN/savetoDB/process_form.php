@@ -36,9 +36,9 @@ $sql = "INSERT INTO tbl_activate (username,password, First_Name, Middle_Name , L
 
 // Step 6: Execute SQL query
 if (mysqli_query($conn, $sql)) {
-   // echo 'DATA SENT TO DATABASE!';
-   //sleep(3);
+   echo 'DATA SENT TO DATABASE!';
    header("location: ../../../../../../carlRandomizer/main/LOGIN/loginPage.php");
+   //sleep(3);
     
 } else {
     echo "Error inserting record: " . mysqli_error($conn);
