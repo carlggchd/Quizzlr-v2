@@ -1,5 +1,5 @@
 <?php
-// Step 2: Connect to database
+//connect to database
 $servername = "localhost";
 $username = "root";
 $password = "Aclan*2020";

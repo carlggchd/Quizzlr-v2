@@ -16,8 +16,8 @@
             <div class="loginForm">
                 <h1>Student Login</h1>
                 <form>
-                <label for="studentNumber">Account Number:</label>
-                <input type="text" id="studentNumber" name="studentNumber">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
                   <div class="login-Button">

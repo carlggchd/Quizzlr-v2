@@ -9,17 +9,25 @@
     <title>Account-Activation</title>
 </head>
 <body>
+  
 
     <header>
         <h1>Student Registration Form</h1>
       </header>
       
       <div class="container">
-        <form action="../../../carlRandomizer/main/LOGIN/savetoDB/process_form.php" onsubmit="return showReview();" method="post">
+        <form autocomplete="off" action="../../../carlRandomizer/main/LOGIN/savetoDB/process_form.php" onsubmit="return showAlert();" method="post">
+        
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+
           <label for="Fname">First Name:</label>
           <input type="text" id="Fname" name="Fname" required>
 
-          <label for="Fname">Middle Name:</label>
+          <label for="Mname">Middle Name:</label>
           <input type="text" id="Mname" name="Mname" required>
 
           <label for="Lname">Last Name:</label>
@@ -42,10 +50,10 @@
             <option value="other">Other</option>
           </select>
     
-          <button type="submit"  name="submit">Submit </button>
+          <button type="submit" name="submit">Submit</button>
 
 
-            <div id="review-section">
+            <!--<div id="review-section">
                 <h2>Review Your Input:</h2>
                 <p id="review-Fname"></p>
                 <p id="review-Mname"></p>
@@ -55,15 +63,46 @@
                 <p id="review-dob"></p>
                 <p id="review-address"></p>
                 <p id="review-gender"></p>
-            </div>
+            </div> -->
 
         </form>
       </div>
-     
+
+     <!-- <div id="message"></div> -->
+
      
     <script>
+  function showAlert() {
+      alert("Data sent to database, your form has been submitted!");
+  }
+/*
+// Get the form
+var form = document.querySelector('form');
 
-function showReview() {
+// Add an event listener to the form's submit button
+form.addEventListener('submit', function(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  // Get the form data
+  var formData = new FormData(form);
+
+  // Send the form data to the PHP file using AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', form.action, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // Display the message in the message div
+      document.getElementById('message').innerHTML = xhr.responseText;
+    } else {
+      console.log('Error: ' + xhr.status);
+    }
+  };
+  xhr.send(formData);
+});*/
+
+
+/*function showReview() {
   // Get the values of the input fields
   var Fname = document.getElementById("Fname").value;
   var Mname = document.getElementById("Mname").value;
@@ -88,6 +127,51 @@ function showReview() {
   document.getElementById("review-section").style.display = "block";
 }
 
+function clearReview(){
+  document.getElementById("review-Fname").innerHTML = "" ;
+  document.getElementById("review-Mname").innerHTML = "" ;
+  document.getElementById("review-Lname").innerHTML = "" ;
+  document.getElementById("review-email").innerHTML = "" ;
+  document.getElementById("review-phone").innerHTML = "" ;
+  document.getElementById("review-dob").innerHTML = "" ;
+  document.getElementById("review-address").innerHTML = "" ;
+  document.getElementById("review-gender").innerHTML = "" ;
+
+   // Show the review section
+   document.getElementById("review-section").style.display = "block";
+}*/
+
+
+
+/*function clearForm() {
+  // Get the form data
+  var formData = new FormData(document.getElementById(form));
+  
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+  
+  // Set up the request
+  xhr.open("POST", "process.php");
+  
+  // Set up a handler for when the request finishes
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        // Show the success message
+        alert(xhr.responseText);
+        
+        // Clear the form fields
+        document.getElementById(form).reset();
+      } else {
+        // Show an error message
+        alert("An error occurred while submitting the form.");
+      }
+    }
+  };
+  
+  // Send the request
+  xhr.send(formData);
+}*/
     </script>
 
       <footer>

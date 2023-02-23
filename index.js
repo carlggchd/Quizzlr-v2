@@ -1,11 +1,11 @@
-// function for loginPage.html
+// function for loginPage.html 
 function validateLogin() { 
-    const studentNumber = document.getElementById("studentNumber").value;
+    const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
   
-    if (studentNumber === "" || password === "") {
+    if (username === "" || password === "") {
       document.getElementById("error").innerHTML = "Please enter both student number and password";
-    } else if (studentNumber === "911619" && password === "123456") {
+    } else if (username === "911619" && password === "123456") {
       alert("Logged in successfully!")
       window.location.href = "../../../carlRandomizer/main/QUIZ/quizPage.php";
     } else {
