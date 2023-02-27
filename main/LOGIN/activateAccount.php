@@ -9,126 +9,49 @@
     <title>Account-Activation</title>
 </head>
 <body>
-  
+
 
     <header>
         <h1>Student Registration Form</h1>
       </header>
       
        <div class="container">
-       <!-- <form autocomplete="off" action="../../../carlRandomizer/main/LOGIN/savetoDB/process_form.php" onsubmit="return showAlert();" method="post">
-        
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
 
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-
-          <label for="Fname">First Name:</label>
-          <input type="text" id="Fname" name="Fname" required>
-
-          <label for="Mname">Middle Name:</label>
-          <input type="text" id="Mname" name="Mname" required>
-
-          <label for="Lname">Last Name:</label>
-          <input type="text" id="Lname" name="Lname" required>
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-    
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" required>
-    
-          <label for="dob">Date of Birth:</label>
-          <input type="date" id="dob" name="dob" required>  <br><br>   
-          <label for="address">Address:</label>
-          <textarea id="address" name="address" required></textarea>
-          <label for="gender">Gender:</label>
-          <select id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-    
-          <button type="submit" name="submit">Submit</button>
-
-
-           
-
-        </form>  -->
-
-        <form action="../../../carlRandomizer/main/LOGIN/savetoDB/process_form.php" method="post">
+        <form action="../../../carlRandomizer/main/LOGIN//signup-check.php" method="post">
      	
      	<?php if (isset($_GET['error'])) { ?>
-     		<p class="error"><?php echo $_GET['error']; ?></p>
+     		<p class="error-msg"><?php echo $_GET['error']; ?></p>
      	<?php } ?>
 
           <?php if (isset($_GET['success'])) { ?>
                <p class="success"><?php echo $_GET['success']; ?></p>
           <?php } ?>
 
-          <label>First Name:</label>
-          <?php if (isset($_GET['Fname'])) { ?>
-               <input type="text" 
-                      name="Fname" 
-                      placeholder="First Name"
-                      value="<?php echo $_GET['Fname']; ?>"><br>
-          <?php }else{ ?>
-               <input type="text" 
-                      name="name" 
-                      placeholder="Name"><br>
-          <?php }?>
-
-
-          <label>Middle Name: </label>
-          <?php if (isset($_GET['name'])) { ?>
-               <input type="text" 
-                      name="name" 
-                      placeholder="Name"
-                      value="<?php echo $_GET['name']; ?>"><br>
-          <?php }else{ ?>
-               <input type="text" 
-                      name="name" 
-                      placeholder="Name"><br>
-          <?php }?>
-
-          <label>Last Name:</label>
-          <?php if (isset($_GET['name'])) { ?>
-               <input type="text" 
-                      name="name" 
-                      placeholder="Name"
-                      value="<?php echo $_GET['name']; ?>"><br>
-          <?php }else{ ?>
-               <input type="text" 
-                      name="name" 
-                      placeholder="Name"><br>
-          <?php }?>
-
           <label>User Name:</label>
-          <?php if (isset($_GET['uname'])) { ?>
+          <?php if (isset($_GET['username'])) { ?>
                <input type="text" 
-                      name="uname" 
+                      name="username" 
                       placeholder="User Name"
-                      value="<?php echo $_GET['uname']; ?>"><br>
+                      value="<?php echo $_GET['username']; ?>"><br>
           <?php }else{ ?>
                <input type="text" 
-                      name="uname" 
-                      placeholder="User Name"><br>
+                      name="username" 
+                      placeholder="Enter Username"><br>
           <?php }?>
 
 
-     	<label>Password</label>
+     	<label>Password:</label>
      	<input type="password" 
                  name="password" 
-                 placeholder="Password"><br>
+                 placeholder="Enter Password"><br>
 
-          <label>Re Password:</label>
+          <label>Confirm Password:</label>
           <input type="password" 
-                 name="re_password" 
-                 placeholder="Re_Password"><br>
+                 name="con_password" 
+                 placeholder="Confirm password"><br>
 
      	<button type="submit">Sign Up</button>
-          <a href="../../../carlRandomizer/main/LOGIN/loginPage.php" class="ca">Already have an account?</a>
+        <br>  <a href="../../../carlRandomizer/main/LOGIN/loginPage.php" class="ca">Already have an account?</a>
      </form>
 
 
@@ -138,12 +61,6 @@
         
       </div>
      
-   <!--<script>
-  function showAlert() {
-      alert("Data sent to database, your form has been submitted!");
-  }
-
-    </script>
 
       <footer>
         <p>&copy; 2023 Quizzlr </p>

@@ -15,23 +15,27 @@
         <div class="form-column">
             <div class="loginForm">
                 <h1>Student Login</h1>
-                <form>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                  <div class="login-Button">
+                <form action="../../../carlRandomizer//main//LOGIN/login.php" method="post">
+                <?php if (isset($_GET['error'])) { ?>
+     		    <p class="error-msg"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
+            <label>User Name</label>
+            <input type="text" name="username" placeholder="User Name"><br>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password"><br>
+                
+                <div class="login-Button">
                     <a href="activateAccount.php"> <p class="activateAccount">activate your account</p> </a>
-                    <input type="button" value="Login" onclick="validateLogin()"> 
-                  </div>
-                <p id="error"></p>
+                    <button type="submit">Login</button>
+                </div>
                 </form>
             </div>
          </div>
     </div>
          
         
-    <script src="../../../carlRandomizer/index.js"> </script>
+    <!-- <script src="../../../carlRandomizer/index.js"> </script> -->
 
 <footer>
   <p>&copy; 2023 Quizzlr </p>

@@ -4,6 +4,10 @@
     box-sizing: border-box;
   }
   
+  .error-msg {
+    color: red;
+  }
+  
   body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -14,7 +18,7 @@
     background-color:rgb(165, 10, 10);
     color: #fff;
     text-align: center;
-    padding: 2%;
+    padding: 1%;
   }
 
   #review-section {
@@ -26,6 +30,8 @@
     max-width: 30%;
     margin: 0 auto;
     padding: 2%;
+    margin-bottom: 10%;
+    
   }
   
   label {
@@ -62,3 +68,14 @@
     bottom: 0;
     width: 100%;
   }
+
+  .ca {
+	font-size: 12px;
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
+	color: #444;
+}
+.ca:hover {
+	text-decoration: underline;
+} 
