@@ -7,6 +7,10 @@
   .error-msg {
     color: red;
   }
+
+  .success {
+    color: #1ac943;
+ }
   
   body {
     font-family: 'Roboto', sans-serif;
