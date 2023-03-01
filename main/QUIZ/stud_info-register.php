@@ -17,7 +17,7 @@
       
        <div class="container">
 
-          <form action="../../../carlRandomizer//main//QUIZ//stud_info-check.php" method="post">
+          <form action="../QUIZ/stud_info-check.php" method="post">
                
                <?php if (isset($_GET['error'])) { ?>
                     <p class="error-msg"><?php echo $_GET['error']; ?></p>
@@ -51,15 +51,16 @@
                <input type="date" name="dateofBirth" placeholder="Enter Birthday"> <br> <br>
 
                <label>Address:</label>
-               <textarea name="address" placeholder="Enter Address"> </textarea><br>
+               <textarea name="address" placeholder="Enter Address"></textarea><br>
 
                <label>Gender:</label>
                <select name="gender" id="gender">
-                    <option value="" disabled selected>Select Gender</option>
+                    <option value="" disabled selected>Select a choice</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                </select>
+
 
                <button type="submit">Submit</button>
 

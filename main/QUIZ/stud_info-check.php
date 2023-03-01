@@ -1,11 +1,17 @@
-<p class="error-msg"><?php echo $_GET['error']; ?></p>
-
 <?php 
 session_start(); 
 include "../../../carlRandomizer/config/dbcon.php";
 
-if (isset($_POST['username']) && isset($_POST['password'])
-    && isset($_POST['con_password'])) {
+/*date_default_timezone_set('Asia/Manila');
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', 'C:\xampp\php\logs\php_error_log');*/
+
+if (isset($_POST['firstName']) && isset($_POST['middleName'])
+    && isset($_POST['lastName']) && isset($_POST['email'])
+	&& isset($_POST['phone'])  && isset($_POST['dateofBirth'])
+	&& isset($_POST['address']) && isset($_POST['gender'])  ){
 
 	function validate($data){
        $data = trim($data);
@@ -14,58 +20,88 @@ if (isset($_POST['username']) && isset($_POST['password'])
 	   return $data;
 	}
 
-	$username = validate($_POST['username']);
-	$password = validate($_POST['password']);
-	$re_pass = validate($_POST['con_password']);
+	$firstName = validate($_POST['firstName']);
+	$middleName = validate($_POST['middleName']);
+	$lastName = validate($_POST['lastName']);
+	$email = validate($_POST['email']);
+	$phone = validate($_POST['phone']);
+	$dateofBirth = validate($_POST['dateofBirth']);
+	$address = validate($_POST['address']);
+	$gender = validate($_POST['gender']);
 
-	$user_data = 'username='. $username;
 
+	$user_data = 'firstName='. $firstName . '&lastName='. $lastName;
+	$dob = new DateTime($dateofBirth);
+	$now = new DateTime();
 
-	if (empty($username)) {
-		header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=User Name is required&$user_data");
+	if (empty($firstName)) {
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=First Name cannot be empty!&$user_data");
 	    exit();
-    }else if (strpos($username, ' ') !== false) {
-        header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=Username cannot contain spaces&$user_data");
-	    exit();
-	}else if(empty($password)){
-        header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=Password is required&$user_data");
-	    exit();
-	}
-	else if(empty($re_pass)){
-        header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=Confirm Password is required&$user_data");
-	    exit();
-	}
-
-	else if($password !== $re_pass){
-        header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=The confirmation password  does not match&$user_data");
+    }
+	else if(empty($middleName)){
+        header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Middle Name cannot be empty!&$user_data");
 	    exit();
 	}
+	else if(empty($lastName)){
+        header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Last Name cannot be empty!&$user_data");
+	    exit();
+	}
+	else if(empty($email)){
+        header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Please enter your email!&$user_data");
+	    exit();
+	}
+	else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Invalid email format!&$user_data");
+		exit();
+	} 
+	else if (strpos($email, ' ') !== false) {
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Email cannot contain spaces!&$user_data");
+		exit();
+	}
+	else if(empty($phone) || !preg_match('/^[0-9]{11}$/', $phone)){
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Please enter a valid 11 digit phone number&$user_data");
+		exit();
+	}
+	else if(empty($dateofBirth)){
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Please enter your date of birth&$user_data");
+		exit();
+	}else if($dob > $now){
+			header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Date of birth cannot be in the future!&$user_data");
+			exit();
+	}
+	else if(empty($address)){
+        header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Address cannot be blank!&$user_data");
+	    exit();
+	}
+	else if(empty($gender)){
+		header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Please choose one of the options!&$user_data");
+		exit();
+	}
 
+	
 	else{
 
-		// hashing the password
-        $password = md5($password);
-
-	    $sql = "SELECT * FROM tbl_login WHERE username='$username' ";
+	    $sql = "SELECT * FROM tbl_student_info WHERE email='$email' ";
 		$result = mysqli_query($conn, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
-			header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=The username is taken try another&$user_data");
+			header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=The email is taken, try another&$user_data");
 	        exit();
 		}else {
-           $sql2 = "INSERT INTO tbl_login(username, password) VALUES('$username', '$password')";
+           $sql2 = "INSERT INTO tbl_student_info(First_Name, Middle_Name, Last_Name, email, phone, Birth_Date, address, gender) 
+		   VALUES('$firstName', '$middleName', '$lastName', '$email', '$phone', '$dateofBirth', '$address', '$gender')";
            $result2 = mysqli_query($conn, $sql2);
            if ($result2) {
-           	 header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?success=Your account has been created successfully");
+           	 header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?success=Your account has been updated!");
 	         exit();
            }else {
-	           	header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=unknown error occurred&$user_data");
+	           	header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=unknown error occurred&$user_data");
 		        exit();
            }
 		}
 	}
 	
 }else{
-	header("Location: ../../../../../carlRandomizer/main/LOGIN/activateAccount.php?error=some error occurred");
+	header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=Some error occurred, please check if all the fields have the right input!");
 	exit();
 }

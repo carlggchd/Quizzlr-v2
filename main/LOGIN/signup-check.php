@@ -1,5 +1,3 @@
-<p class="error-msg"><?php echo $_GET['error']; ?></p>
-
 <?php 
 session_start(); 
 include "../../../carlRandomizer/config/dbcon.php";
