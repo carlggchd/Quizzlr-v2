@@ -95,6 +95,15 @@ a{
 }
 
 /* end of hamburger */
+
+.welcome-msg {
+  display: inline-block;
+  margin-right: 80%;
+  margin-top: 3%;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
 .header h1 {
   font-size: 50px;
   margin: 0;

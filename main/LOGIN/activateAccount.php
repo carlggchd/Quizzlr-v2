@@ -12,7 +12,7 @@
 
 
     <header>
-        <h1>Student Registration Form</h1>
+        <h1>Student Signup Form</h1>
       </header>
       
        <div class="container">
