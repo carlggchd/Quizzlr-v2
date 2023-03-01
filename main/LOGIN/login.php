@@ -36,7 +36,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             	$_SESSION['student_id'] = $row['student_id'];
                 echo "<script>alert('Logged in successfully!');</script>";
                 echo "<script>window.location = '../../../../../carlRandomizer/main/QUIZ/quizPage.php';</script>";
-            	//header("Location: ../../../../../carlRandomizer/main/QUIZ/quizPage.php");
 		        exit();
             }else{
 				header("Location: ../../../../../carlRandomizer/main/LOGIN/loginPage.php?error=Incorrect Username or password");

@@ -1,12 +1,21 @@
 <?php 
 session_start(); 
-include "../../../carlRandomizer/config/dbcon.php";
 
-/*date_default_timezone_set('Asia/Manila');
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', 'C:\xampp\php\logs\php_error_log');*/
+//checks who logged in and who is the current user
+if (!isset($_SESSION['student_id'])) {
+	header('Location: ../../../../../carlRandomizer/main/LOGIN/login.php');
+	exit();
+  }
+
+// checks if the logged in user is already done with the registration
+include "../../../carlRandomizer/config/dbcon.php";
+$student_id = $_SESSION['student_id'];
+$loginCheck = mysqli_query($conn, "SELECT * FROM tbl_student_info WHERE student_id = $student_id");
+if (mysqli_num_rows($loginCheck) > 0) {
+	header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=User already registered! go to login page or register a new account.");
+	exit();
+}
+
 
 if (isset($_POST['firstName']) && isset($_POST['middleName'])
     && isset($_POST['lastName']) && isset($_POST['email'])
@@ -78,7 +87,7 @@ if (isset($_POST['firstName']) && isset($_POST['middleName'])
 		exit();
 	}
 
-	
+
 	else{
 
 	    $sql = "SELECT * FROM tbl_student_info WHERE email='$email' ";
@@ -88,8 +97,8 @@ if (isset($_POST['firstName']) && isset($_POST['middleName'])
 			header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=The email is taken, try another&$user_data");
 	        exit();
 		}else {
-           $sql2 = "INSERT INTO tbl_student_info(First_Name, Middle_Name, Last_Name, email, phone, Birth_Date, address, gender) 
-		   VALUES('$firstName', '$middleName', '$lastName', '$email', '$phone', '$dateofBirth', '$address', '$gender')";
+           $sql2 = "INSERT INTO tbl_student_info(student_id, First_Name, Middle_Name, Last_Name, email, phone, Birth_Date, address, gender) 
+		   VALUES($student_id,'$firstName', '$middleName', '$lastName', '$email', '$phone', '$dateofBirth', '$address', '$gender')";
            $result2 = mysqli_query($conn, $sql2);
            if ($result2) {
            	 header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?success=Your account has been updated!");
