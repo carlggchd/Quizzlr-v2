@@ -21,7 +21,6 @@
               ?>
           </div>
         <nav class="navbar"> 
-          <!--<a href="#" class="nav-branding">Quizzlr</a> -->
           <ul class="nav-menu"> 
             <li class="nav-item">
               <a href="../../../carlRandomizer/index.php" class="nav-link">Home</a>

@@ -11,9 +11,42 @@
 <body>
 
 
-    <header>
+     <header>
         <h1>Student Information Form</h1>
-      </header>
+        <div class="welcome-msg">
+              <?php
+              session_start();
+              include_once '../../../carlRandomizer/config/dbcon.php';
+              if(isset($_SESSION['username'])){
+                echo "Welcome, ".$_SESSION['username']."!";
+              }
+              ?>
+          </div>
+        <nav class="navbar"> 
+          <ul class="nav-menu"> 
+            <li class="nav-item">
+              <a href="/../../carlRandomizer/index.php" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Register</a>
+            </li>
+            <li class="nav-item">
+              <a href="/../../../carlRandomizer/main/QUIZ/quizPage.php" class="nav-link">Quiz Page</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">About (under construction)</a>
+            </li>
+            <li class="nav-item">
+              <a href="/../../carlRandomizer/main/LOGIN/logout.php" class="nav-link">Logout</a>
+            </li>
+          </ul>
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+     </header>
       
        <div class="container">
 
@@ -67,6 +100,22 @@
           </form>
 
       </div>
+
+      <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        })
+
+        document.querySelectorAll(".nav-link").forEach(n => n. 
+        addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        }))
+      </script>
      
       <footer>
         <p>&copy; 2023 Quizzlr </p>

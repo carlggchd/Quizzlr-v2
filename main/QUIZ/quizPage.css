@@ -7,11 +7,19 @@
 }
 
 .header {
-  background-color: rgba(156, 6, 6, 0.856);
+  background-color: rgb(165, 10, 10);
   padding: 20px;
   text-align: center;
   color: white;
   font-family: 'Merriweather', serif;
+}
+
+.welcome-msg {
+  display: inline-block;
+  margin-right: 80%;
+  margin-top: 3%;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* hamburger menu style*/
@@ -95,14 +103,6 @@ a{
 }
 
 /* end of hamburger */
-
-.welcome-msg {
-  display: inline-block;
-  margin-right: 80%;
-  margin-top: 3%;
-  font-size: 20px;
-  font-family: 'Roboto', sans-serif;
-}
 
 .header h1 {
   font-size: 50px;

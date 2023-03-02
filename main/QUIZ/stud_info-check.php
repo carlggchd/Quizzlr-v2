@@ -12,7 +12,7 @@ include "../../../carlRandomizer/config/dbcon.php";
 $student_id = $_SESSION['student_id'];
 $loginCheck = mysqli_query($conn, "SELECT * FROM tbl_student_info WHERE student_id = $student_id");
 if (mysqli_num_rows($loginCheck) > 0) {
-	header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=User already registered! go to login page or register a new account.");
+	header("Location: ../../../../../carlRandomizer/main/QUIZ/stud_info-register.php?error=User already registered! you can start the quiz now or logout and register a new account.");
 	exit();
 }
 
