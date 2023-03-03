@@ -15,7 +15,7 @@
             <?php
                session_start();
                include_once '../../../carlRandomizer/config/dbcon.php';
-               
+
                // function for checking if user is admin or not
                function isAdmin($student_id) { 
                   include '../../../carlRandomizer/config/dbcon.php';
@@ -60,8 +60,6 @@
          <h2>Quiz Category 1</h2>
          <p>Description for quiz category 1</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
@@ -75,8 +73,6 @@
          <h2>Quiz Category 2</h2>
          <p>Description for quiz category 2</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
@@ -90,8 +86,6 @@
          <h2>Quiz Category 3</h2>
          <p>Description for quiz category 3</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
@@ -105,8 +99,6 @@
          <h2>Quiz Category 4</h2>
          <p>Description for quiz category 4</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
@@ -120,8 +112,6 @@
          <h2>Quiz Category 5</h2>
          <p>Description for quiz category 5</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
@@ -135,8 +125,6 @@
          <h2>Quiz Category 6</h2>
          <p>Description for quiz category 6</p>
          <?php
-            include_once '../../../carlRandomizer/config/dbcon.php';
-            $student_id = $_SESSION['student_id'];
            if(isAdmin($student_id)){
             echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
            }
