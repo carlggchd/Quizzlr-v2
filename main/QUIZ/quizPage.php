@@ -2,6 +2,9 @@
 <html lang="en">
    <head>
       <link rel="stylesheet" href="quizPage.css">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Expires" content="0">
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +32,8 @@
                if(isset($_SESSION['username'])){
                   echo "Welcome, ".$_SESSION['username']."!";
                }
+               //checks if user is registered or not
+               $regi_check = mysqli_query($conn, "SELECT * FROM tbl_student_info WHERE student_id='$student_id'");
             ?>
          </div>
    <nav class="navbar"> 
@@ -60,7 +65,10 @@
          <h2>Quiz Category 1</h2>
          <p>Description for quiz category 1</p>
          <?php
-            if(isAdmin($student_id)){
+            if (mysqli_num_rows($regi_check) == 0) {
+                echo "<p>Please register your information before taking this quiz.</p>";
+             } 
+            else if(isAdmin($student_id)){
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=1'><button>Upload Quiz</button></a>";
             }
             else{
@@ -73,7 +81,10 @@
          <h2>Quiz Category 2</h2>
          <p>Description for quiz category 2</p>
          <?php
-            if(isAdmin($student_id)){
+            if (mysqli_num_rows($regi_check) == 0) {
+               echo "<p>Please register your information before taking this quiz.</p>";
+            } 
+            else if(isAdmin($student_id)){
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=2'><button>Upload Quiz</button></a>";
             }
             else{
@@ -86,7 +97,10 @@
          <h2>Quiz Category 3</h2>
          <p>Description for quiz category 3</p>
          <?php
-            if(isAdmin($student_id)){
+            if (mysqli_num_rows($regi_check) == 0) {
+            echo "<p>Please register your information before taking this quiz.</p>";
+            }
+            else if(isAdmin($student_id)){
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=3'><button>Upload Quiz</button></a>";
             }
             else{
@@ -99,8 +113,11 @@
          <h2>Quiz Category 4</h2>
          <p>Description for quiz category 4</p>
          <?php
-            if(isAdmin($student_id)){
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=4'><button>Upload Quiz</button></a>";
+            if (mysqli_num_rows($regi_check) == 0) {
+               echo "<p>Please register your information before taking this quiz.</p>";
+               }
+            else if(isAdmin($student_id)){
+                  echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=4'><button>Upload Quiz</button></a>";
             }
             else{
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4'><button>Start Quiz</button></a>";
@@ -112,8 +129,11 @@
          <h2>Quiz Category 5</h2>
          <p>Description for quiz category 5</p>
          <?php
-            if(isAdmin($student_id)){
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=5'><button>Upload Quiz</button></a>";
+            if (mysqli_num_rows($regi_check) == 0) {
+               echo "<p>Please register your information before taking this quiz.</p>";
+               }
+            else if(isAdmin($student_id)){
+                  echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=5'><button>Upload Quiz</button></a>";
             }
             else{
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5'><button>Start Quiz</button></a>";
@@ -125,7 +145,10 @@
          <h2>Quiz Category 6</h2>
          <p>Description for quiz category 6</p>
          <?php
-            if(isAdmin($student_id)){
+            if (mysqli_num_rows($regi_check) == 0) {
+               echo "<p>Please register your information before taking this quiz.</p>";
+               }
+            else if(isAdmin($student_id)){
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=6'><button>Upload Quiz</button></a>";
             }
             else{
