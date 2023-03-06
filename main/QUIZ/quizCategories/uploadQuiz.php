@@ -48,6 +48,15 @@
        <div class="container">
 
           <form method="post" action="upload.php" enctype="multipart/form-data">
+            <label for="category">Category:</label>
+                <select name="category" id="category">
+                  <option value="1">General Knowledge</option>
+                  <option value="2">Math</option>
+                  <option value="3">English</option>
+                  <option value="4">Science</option>
+                  <option value="5">History</option>
+                  <option value="6">Social Sciences</option>
+                </select><br><br>
             <input type="file" name="file" accept=".csv,.xlsx,.xls"> <br><br>
             <button type="submit">Upload</button>
           </form>

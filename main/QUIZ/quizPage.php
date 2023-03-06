@@ -60,78 +60,78 @@
          <h2>Quiz Category 1</h2>
          <p>Description for quiz category 1</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory1.php'><button>Start Quiz</button></a>";
-           }
-         ?>         
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=1'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1'><button>Start Quiz</button></a>";
+            }
+         ?>   
       </div>
 
       <div class="card">
          <h2>Quiz Category 2</h2>
          <p>Description for quiz category 2</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory2.php'><button>Start Quiz</button></a>";
-           }
-         ?>          
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=2'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2'><button>Start Quiz</button></a>";
+            }
+         ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 3</h2>
          <p>Description for quiz category 3</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory3.php'><button>Start Quiz</button></a>";
-           }
-         ?>    
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=3'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3'><button>Start Quiz</button></a>";
+            }
+         ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 4</h2>
          <p>Description for quiz category 4</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory4.php'><button>Start Quiz</button></a>";
-           }
-         ?>    
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=4'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4'><button>Start Quiz</button></a>";
+            }
+         ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 5</h2>
          <p>Description for quiz category 5</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory5.php'><button>Start Quiz</button></a>";
-           }
-         ?>    
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=5'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5'><button>Start Quiz</button></a>";
+            }
+         ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 6</h2>
          <p>Description for quiz category 6</p>
          <?php
-           if(isAdmin($student_id)){
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php'><button>Upload Quiz</button></a>";
-           }
-           else{
-            echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizCategory6.php'><button>Start Quiz</button></a>";
-           }
-         ?>    
+            if(isAdmin($student_id)){
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=6'><button>Upload Quiz</button></a>";
+            }
+            else{
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6'><button>Start Quiz</button></a>";
+            }
+         ?>  
       </div>
 
       </div>
