@@ -18,20 +18,19 @@
             <?php
                session_start();
                include_once '../../../carlRandomizer/config/dbcon.php';
-
+            
+               // shows who is the current user
+               $student_id = $_SESSION['student_id'];
+               if(isset($_SESSION['username'])){
+                  echo "Welcome, ".$_SESSION['username']."!";
+               }
                // function for checking if user is admin or not
-               function isAdmin($student_id) { 
+                 function isAdmin($student_id) { 
                   include '../../../carlRandomizer/config/dbcon.php';
                   $result = mysqli_query($conn, "SELECT admin_status FROM tbl_login WHERE student_id = $student_id");
                   $statusCheck = mysqli_fetch_assoc($result);
                   return $statusCheck['admin_status'] == 1;
                 }
-                // shows who is the current user
-               $student_id = $_SESSION['student_id'];
-               $result = mysqli_query($conn, "SELECT admin_status FROM tbl_login WHERE student_id = $student_id");
-               if(isset($_SESSION['username'])){
-                  echo "Welcome, ".$_SESSION['username']."!";
-               }
                //checks if user is registered or not
                $regi_check = mysqli_query($conn, "SELECT * FROM tbl_student_info WHERE student_id='$student_id'");
             ?>
@@ -174,5 +173,8 @@
           navMenu.classList.remove("active");
         }))
       </script>
+      <footer>
+        <p>&copy; 2023 Quizzlr </p>
+      </footer>
    </body>
 </html>

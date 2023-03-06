@@ -12,6 +12,7 @@
 </head>
 <body>
  <?php 
+    include '../../../../carlRandomizer/main/QUIZ/quizCategories/upload.php';
     $category = $_GET['category'];
     $category_text = [
         1 => 'General Knowledge',
@@ -24,12 +25,10 @@
     $category_name = $category_text[$category];
    
  ?>
-<header>
+      <header>
         <?php echo"<h1>$category_name</h1>" ?>
         <div class="welcome-msg">
               <?php
-              session_start();
-              include_once '../../../../carlRandomizer/config/dbcon.php';
               if(isset($_SESSION['username'])){
                 echo "Welcome, ".$_SESSION['username']."!";
               }
@@ -60,6 +59,18 @@
           </div>
         </nav>
      </header>
+
+              <h2>Question #[ ] </h2>
+              <br><br><br><br>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
+              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
+              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
+              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
+              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
+              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
+              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
      <script>
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
@@ -80,27 +91,19 @@
         <p>&copy; 2023 Quizzlr </p>
       </footer>
 <?php
-// Retrieve the category parameter from the URL
-
 
 /* Load the appropriate quiz questions based on the category
 if ($category == 1) {
-    echo "<h1> GENERAL KNOWLEDGE </h1>";
   // Load questions for category 1
 } else if ($category == 2) {
-    echo "<h1> MATH </h1>";
   // Load questions for category 2
 } else if ($category == 3) {
-    echo "<h1> ENGLISH </h1>";
   // Load questions for category 3
 } else if ($category == 4) {
-    echo "<h1> SCIENCE </h1>";
   // Load questions for category 4
 } else if ($category == 5) {
-    echo "<h1> HISTORY </h1>";
   // Load questions for category 5
 } else if ($category == 6) {
-    echo "<h1> SOCIAL SCIENCES </h1>";
   // Load questions for category 6
 }*/
 

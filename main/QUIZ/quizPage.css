@@ -153,6 +153,16 @@ a{
   background-color: #023e8a;
 }
 
+footer {
+  background-color: rgb(165, 10, 10);
+  color: #fff;
+  text-align: center;
+  padding: 1%;
+  bottom: 0;
+  width: 100%;
+  margin-top: 10%;
+}
+
 @media only screen and (max-width: 600px) {
   .card {
     width: 80%;

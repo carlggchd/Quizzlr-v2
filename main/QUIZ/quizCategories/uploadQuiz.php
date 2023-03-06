@@ -63,6 +63,7 @@
                   <option value="5" <?php echo ($category == 5) ? 'selected' : '' ?>>History</option>
                   <option value="6" <?php echo ($category == 6) ? 'selected' : '' ?>>Social Sciences</option>
                 </select><br><br>
+            <input type="hidden" name="category" value="<?php echo $category; ?>">
             <input type="file" name="file" accept=".csv,.xlsx,.xls"> <br><br>
             <button type="submit">Upload</button>
           </form>
