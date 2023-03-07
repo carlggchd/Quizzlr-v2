@@ -11,6 +11,10 @@ p{
   font-weight: bold;
  }
 
+ li{
+ text-align: center;
+ }
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;

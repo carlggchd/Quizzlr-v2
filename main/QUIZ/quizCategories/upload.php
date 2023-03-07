@@ -48,6 +48,12 @@ if (isset($_FILES['file'])) { //marker 001
 
     // Insert each row into the tbl_quiz_questions table
     foreach ($data as $row) { //marker 002
+       
+        if ($counter > 30) { 
+            echo "<script>alert('Quiz updated succesfully but only up to 30 items!!');</script>";
+            break; 
+        }
+
         $question_number = mysqli_real_escape_string($conn, $row[0]);
         $question = mysqli_real_escape_string($conn, $row[1]);
         $choice_a = mysqli_real_escape_string($conn, $row[2]);
@@ -69,6 +75,7 @@ if (isset($_FILES['file'])) { //marker 001
                 $counter++;
                 if ($counter >= 30) {
                     echo "<script>alert('Quiz Updated successfully!');</script>";
+                    break;
                 }
             } else {
                 echo "Error updating record: " . mysqli_error($conn);
@@ -82,6 +89,7 @@ if (isset($_FILES['file'])) { //marker 001
                 $counter++;
                 if ($counter >= 30) {
                     echo "<script>alert('Quiz Uploaded successfully!');</script>";
+                    break;
                 }
             } else {
                 echo "Error: " . $insert_sql . "<br>" . mysqli_error($conn);

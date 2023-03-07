@@ -13,6 +13,8 @@
 <body>
  <?php 
     include '../../../../carlRandomizer/main/QUIZ/quizCategories/upload.php';
+    include '../../../../carlRandomizer/config/dbcon.php';
+
     $category = $_GET['category'];
     $category_text = [
         1 => 'General Knowledge',
@@ -23,7 +25,6 @@
         6 => 'Social Sciences'
     ];
     $category_name = $category_text[$category];
-   
  ?>
       <header>
         <?php echo"<h1>$category_name</h1>" ?>
@@ -60,17 +61,89 @@
         </nav>
      </header>
 
-              <h2>Question #[ ] </h2>
-              <br><br><br><br>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
-              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
-              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
-              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
-              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente asperiores 
-              necessitatibus explicabo est eius mollitia impedit consectetur quisquam cumque atque? 
-              Vero dolorum sit sequi reiciendis nemo neque dolor, alias sint!</p>
+     <?php
+
+ 
+$sql = "SELECT * FROM tbl_quiz_questions WHERE category = $category ORDER BY question_number ASC";
+$result = mysqli_query($conn, $sql);
+
+// Store questions in an array
+$questions = array();
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $questions[] = $row;
+    }
+}
+// Load the appropriate quiz questions based on the category
+if ($category == 1) {
+  // Load questions for category 1
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+} else if ($category == 2) {
+  // Load questions for category 2
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+} else if ($category == 3) {
+  // Load questions for category 3
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+} else if ($category == 4) {
+  // Load questions for category 4
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+} else if ($category == 5) {
+  // Load questions for category 5
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+} else if ($category == 6) {
+  // Load questions for category 6
+  foreach ($questions as $question) {
+    echo "<p>" . $question['question'] . "</p>";
+    echo "<ul>";
+    echo "<li>" . $question['choice_a'] . "</li>";
+    echo "<li>" . $question['choice_b'] . "</li>";
+    echo "<li>" . $question['choice_c'] . "</li>";
+    echo "<li>" . $question['choice_d'] . "</li>";
+    echo "</ul>";
+  }
+}
+
+?>
      <script>
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
@@ -90,23 +163,6 @@
       <footer>
         <p>&copy; 2023 Quizzlr </p>
       </footer>
-<?php
 
-/* Load the appropriate quiz questions based on the category
-if ($category == 1) {
-  // Load questions for category 1
-} else if ($category == 2) {
-  // Load questions for category 2
-} else if ($category == 3) {
-  // Load questions for category 3
-} else if ($category == 4) {
-  // Load questions for category 4
-} else if ($category == 5) {
-  // Load questions for category 5
-} else if ($category == 6) {
-  // Load questions for category 6
-}*/
-
-?>
 </body>
 </html>
