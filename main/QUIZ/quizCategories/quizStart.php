@@ -74,73 +74,43 @@ if (mysqli_num_rows($result) > 0) {
         $questions[] = $row;
     }
 }
-// Load the appropriate quiz questions based on the category
-if ($category == 1) {
-  // Load questions for category 1
-  foreach ($questions as $question) {
+
+// Get the index of the current question from the query parameter
+$index = isset($_GET['q']) ? intval($_GET['q']) : 0;
+
+// Load the appropriate quiz question based on the index
+echo '<div class="question-container">';
+if ($index < count($questions)) {
+    $question = $questions[$index];
+
+    if($index >=1 || $index <=0){
+      echo '<h2>Question number: ' . ($index+1) . '</h2>';
+    }
+    echo "<br>";
     echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
-} else if ($category == 2) {
-  // Load questions for category 2
-  foreach ($questions as $question) {
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
-} else if ($category == 3) {
-  // Load questions for category 3
-  foreach ($questions as $question) {
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
-} else if ($category == 4) {
-  // Load questions for category 4
-  foreach ($questions as $question) {
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
-} else if ($category == 5) {
-  // Load questions for category 5
-  foreach ($questions as $question) {
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
-} else if ($category == 6) {
-  // Load questions for category 6
-  foreach ($questions as $question) {
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<ul>";
-    echo "<li>" . $question['choice_a'] . "</li>";
-    echo "<li>" . $question['choice_b'] . "</li>";
-    echo "<li>" . $question['choice_c'] . "</li>";
-    echo "<li>" . $question['choice_d'] . "</li>";
-    echo "</ul>";
-  }
+    echo "<div class='choices-container'>";
+    echo "<div class='left-column'>";
+    echo "<label><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
+    echo "<br>";
+    echo "<label><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label>";
+    echo "</div>";
+    echo "<div class='right-column'>";
+    echo "<label><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
+    echo "<br>";
+    echo "<label><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
+    echo "</div>";
+    echo "</div>";
+
+    // Add a "Previous" button that reloads the page with the previous question
+    if ($index > 0) {
+        echo '<a class="prev-btn" href="?category=' . $category . '&q=' . ($index-1) . '">Previous</a>';
+    }
+
+    // Add a "Next" button that reloads the page with the next question
+    if ($index < count($questions) - 1) {
+        echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Next</a>';
+    }
+    echo '</div>';
 }
 
 ?>

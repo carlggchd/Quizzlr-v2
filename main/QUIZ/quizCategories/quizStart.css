@@ -11,9 +11,7 @@ p{
   font-weight: bold;
  }
 
- li{
- text-align: center;
- }
+ 
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -35,6 +33,63 @@ body {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
   }
+
+  /*  start of questions view  */
+  .next-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .prev-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.question-container{
+  text-align: center;
+  color: white;
+  max-width: 50%;
+  margin-top: 5%;
+  align-items: center;
+  padding: 20px;
+  background-color:  rgb(165, 10, 10);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+
+.choices-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.left-column {
+  width: 45%;
+  float: left;
+}
+
+.right-column {
+  width: 45%;
+  float: right;
+}
+
+ /*  end of questions view  */
+
 
 /* hamburger menu style*/
 li {

@@ -71,7 +71,7 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=1'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1&q=0'><button>Start Quiz</button></a>";
             }
          ?>   
       </div>
@@ -87,7 +87,7 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=2'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2&q=0'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
@@ -103,7 +103,7 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=3'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3&q=0'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
@@ -119,7 +119,7 @@
                   echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=4'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4&q=0'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
@@ -135,7 +135,7 @@
                   echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=5'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5&q=0'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
@@ -151,7 +151,7 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=6'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6&q=0'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
