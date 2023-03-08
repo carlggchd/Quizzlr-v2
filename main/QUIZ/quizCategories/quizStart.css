@@ -91,12 +91,17 @@ body {
 }
 
 .left-column {
-  min-width: 200px; 
+  min-width: 10%; 
 }
 
 .right-column {
-  min-width: 200px;
+  min-width: 10%;
 
+}
+
+.questionTitle{
+  font-size: large;
+  font-weight: bold;
 }
 
 

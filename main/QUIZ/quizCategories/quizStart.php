@@ -87,7 +87,7 @@ if ($index < count($questions)) { //marker 001 head
       echo '<h2>Question number: ' . ($index+1) . '</h2>';
     }
 echo "<br>";
-echo "<p>" . $question['question'] . "</p>";
+echo "<p class=questionTitle>" . $question['question'] . "</p>";
 echo "<div class='choices-container'>"; //choices-container head
 echo "<div class='left-column'>"; //left-column head
 if (strlen($question['choice_a']) > 20) {
@@ -125,21 +125,14 @@ echo "</div>";//choices-container tail
         echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Next</a>';
     }
     
-    //submit button only shows during last question.
     if ($index >= count($questions) - 1) {
-    echo '<form action="#" method="POST">
-            <input type="hidden" name="category" value="' . $category . '">
-            <input type="hidden" name="total_questions" value="' . count($questions) . '">
-            <input class="submit-btn" type="submit" name="submit" value="Submit">
-          </form>';
-    }
-
+      echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Submit</a>';
+  }
     echo '</div>';//question-container tail
     
 } // marker 001 tail
 
 ?>
-
 
      <script>
         const hamburger = document.querySelector(".hamburger");
