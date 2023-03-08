@@ -37,8 +37,8 @@ body {
   /*  start of questions view  */
   .next-btn {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 1%;
+    right: 2%;
     background-color: rgb(165, 10, 10);
     color: #fff;
     border: none;
@@ -47,14 +47,26 @@ body {
     cursor: pointer;
   }
   
-  .prev-btn {
+  .prev-btn { 
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 1%;
+    left: 2%;
     background-color: rgb(165, 10, 10);
     color: #fff;
     border: none;
     padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .submit-btn {
+      position: absolute;
+    bottom: 1%;
+    right: 2%;
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -79,15 +91,20 @@ body {
 }
 
 .left-column {
-  width: 45%;
-  float: left;
+  min-width: 200px; 
 }
 
 .right-column {
-  width: 45%;
-  float: right;
+  min-width: 200px;
+
 }
 
+
+@media (max-width: 768px) {
+  .left-column, .right-column {
+    flex-basis: 100%;
+  }
+}
  /*  end of questions view  */
 
 

@@ -79,27 +79,41 @@ if (mysqli_num_rows($result) > 0) {
 $index = isset($_GET['q']) ? intval($_GET['q']) : 0;
 
 // Load the appropriate quiz question based on the index
-echo '<div class="question-container">';
-if ($index < count($questions)) {
+echo '<div class="question-container">'; //question-container head
+if ($index < count($questions)) { //marker 001 head
     $question = $questions[$index];
 
     if($index >=1 || $index <=0){
       echo '<h2>Question number: ' . ($index+1) . '</h2>';
     }
-    echo "<br>";
-    echo "<p>" . $question['question'] . "</p>";
-    echo "<div class='choices-container'>";
-    echo "<div class='left-column'>";
-    echo "<label><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
-    echo "<br>";
-    echo "<label><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label>";
-    echo "</div>";
-    echo "<div class='right-column'>";
-    echo "<label><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
-    echo "<br>";
-    echo "<label><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
-    echo "</div>";
-    echo "</div>";
+echo "<br>";
+echo "<p>" . $question['question'] . "</p>";
+echo "<div class='choices-container'>"; //choices-container head
+echo "<div class='left-column'>"; //left-column head
+if (strlen($question['choice_a']) > 20) {
+  echo "<label><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
+} else {
+  echo "<label class='short-choice'><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
+}
+if (strlen($question['choice_b']) > 20) {
+  echo "<br><label><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label> <br>";
+} else {
+  echo "<br><label class='short-choice'><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label>";
+}
+echo "</div>"; //left-column tail
+echo "<div class='right-column'>"; //right-column head
+if (strlen($question['choice_c']) > 20) {
+  echo "<label><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
+} else {
+  echo "<label class='short-choice'><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
+}
+if (strlen($question['choice_d']) > 20) {
+  echo "<br><label><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
+} else {
+  echo "<br><label class='short-choice'><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
+}
+echo "</div>";//right-column tail
+echo "</div>";//choices-container tail
 
     // Add a "Previous" button that reloads the page with the previous question
     if ($index > 0) {
@@ -110,10 +124,23 @@ if ($index < count($questions)) {
     if ($index < count($questions) - 1) {
         echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Next</a>';
     }
-    echo '</div>';
-}
+    
+    //submit button only shows during last question.
+    if ($index >= count($questions) - 1) {
+    echo '<form action="#" method="POST">
+            <input type="hidden" name="category" value="' . $category . '">
+            <input type="hidden" name="total_questions" value="' . count($questions) . '">
+            <input class="submit-btn" type="submit" name="submit" value="Submit">
+          </form>';
+    }
+
+    echo '</div>';//question-container tail
+    
+} // marker 001 tail
 
 ?>
+
+
      <script>
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
