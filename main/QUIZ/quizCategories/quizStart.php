@@ -1,158 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="quizStart.css">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz_Start</title>
+  <link rel="stylesheet" href="quizStart.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz_Start</title>
 </head>
+
 <body>
- <?php 
-    include '../../../../carlRandomizer/main/QUIZ/quizCategories/upload.php';
-    include '../../../../carlRandomizer/config/dbcon.php';
+  <?php
+  session_start();
+  include '../../../../carlRandomizer/config/dbcon.php';
 
-    $category = $_GET['category'];
-    $category_text = [
-        1 => 'General Knowledge',
-        2 => 'Math',
-        3 => 'English',
-        4 => 'Science',
-        5 => 'History',
-        6 => 'Social Sciences'
-    ];
-    $category_name = $category_text[$category];
- ?>
-      <header>
-        <?php echo"<h1>$category_name</h1>" ?>
-        <div class="welcome-msg">
-              <?php
-              if(isset($_SESSION['username'])){
-                echo "Welcome, ".$_SESSION['username']."!";
-              }
-              ?>
-          </div>
-        <nav class="navbar"> 
-          <ul class="nav-menu"> 
-            <li class="nav-item">
-              <a href="/../../carlRandomizer/index.php" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Register</a>
-            </li>
-            <li class="nav-item">
-              <a href="/../../../carlRandomizer/main/QUIZ/quizPage.php" class="nav-link">Quiz Page</a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">About (under construction)</a>
-            </li>
-            <li class="nav-item">
-              <a href="/../../carlRandomizer/main/LOGIN/logout.php" class="nav-link">Logout</a>
-            </li>
-          </ul>
-          <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
-        </nav>
-     </header>
 
-     <?php
+  $category = $_GET['category'];
+  $category_text = [
+    1 => 'General Knowledge',
+    2 => 'Math',
+    3 => 'English',
+    4 => 'Science',
+    5 => 'History',
+    6 => 'Social Sciences'
+  ];
+  $category_name = $category_text[$category];
 
- 
-$sql = "SELECT * FROM tbl_quiz_questions WHERE category = $category ORDER BY question_number ASC";
-$result = mysqli_query($conn, $sql);
+  $_SESSION['categoryNumber'] = $category;
+  ?>
+  <header>
+    <?php echo "<h1>$category_name</h1>" ?>
+    <div class="welcome-msg">
+      <?php
+      if (isset($_SESSION['username'])) {
+        echo "Welcome, " . $_SESSION['username'] . "!";
+      }
+      ?>
+    </div>
+    <nav class="navbar">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="/../../carlRandomizer/index.php" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a href="/../../../carlRandomizer/main/QUIZ/quizPage.php" class="nav-link">Quiz Page</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">About (under construction)</a>
+        </li>
+        <li class="nav-item">
+          <a href="/../../carlRandomizer/main/LOGIN/logout.php" class="nav-link">Logout</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </header>
 
-// Store questions in an array
-$questions = array();
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $questions[] = $row;
+  <div class="question-container" id="question-container">
+
+    <?php
+    $getCategory = $_SESSION['categoryNumber'];
+
+    $sql = "SELECT * FROM tbl_quiz_questions WHERE category = $getCategory ORDER BY question_number ASC LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+
+    $questions = array();
+    $question_number = 0;
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        //$row['question_number'] = $question_number; 
+        //$questions[] = $row;
+        //$question_number++;
+        echo "<p> ";
+        echo "Question # : " . $row['question_number'];
+        echo "<br>";
+        echo $row['question'];
+        echo "</p>";
+      }
+    } else {
+      echo "reached maximum questions!";
     }
-}
+    ?>
+  </div>
 
-// Get the index of the current question from the query parameter
-$index = isset($_GET['q']) ? intval($_GET['q']) : 0;
+  <div class="start-container" id="start-container">
 
-// Load the appropriate quiz question based on the index
-echo '<div class="question-container">'; //question-container head
-if ($index < count($questions)) { //marker 001 head
-    $question = $questions[$index];
+    <div class="start-btn" id="start-btn"> <button id="hide-quiz-btn">Previous</button> </div>
+    <div class="start-btn" id="start-btn"> <button id="show-quiz-btn">Next</button> </div>
+  </div>
 
-    if($index >=1 || $index <=0){
-      echo '<h2>Question number: ' . ($index+1) . '</h2>';
-    }
-echo "<br>";
-echo "<p class=questionTitle>" . $question['question'] . "</p>";
-echo "<div class='choices-container'>"; //choices-container head
-echo "<div class='left-column'>"; //left-column head
-if (strlen($question['choice_a']) > 20) {
-  echo "<label><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
-} else {
-  echo "<label class='short-choice'><input type='radio' name='answer' value='a'> A. " . $question['choice_a'] . "</label>";
-}
-if (strlen($question['choice_b']) > 20) {
-  echo "<br><label><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label> <br>";
-} else {
-  echo "<br><label class='short-choice'><input type='radio' name='answer' value='b'> B. " . $question['choice_b'] . "</label>";
-}
-echo "</div>"; //left-column tail
-echo "<div class='right-column'>"; //right-column head
-if (strlen($question['choice_c']) > 20) {
-  echo "<label><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
-} else {
-  echo "<label class='short-choice'><input type='radio' name='answer' value='c'> C. " . $question['choice_c'] . "</label>";
-}
-if (strlen($question['choice_d']) > 20) {
-  echo "<br><label><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
-} else {
-  echo "<br><label class='short-choice'><input type='radio' name='answer' value='d'> D. " . $question['choice_d'] . "</label>";
-}
-echo "</div>";//right-column tail
-echo "</div>";//choices-container tail
+  <script>
+    //jquery
+    $(document).ready(function() {
+      var questionCurrentCount = 1;
+      var questionMaxCount = 30; // set this to the maximum number of questions
+      $('#show-quiz-btn').click(function() {
+        if (questionCurrentCount <= questionMaxCount) {
+          $("#question-container").load("getQuestion.php", {
+            questionNewCount: questionCurrentCount
+          });
+          questionCurrentCount++;
+        }
+      });
+      $('#hide-quiz-btn').click(function() {
+        if (questionCurrentCount > 1) {
+          questionCurrentCount--;
+          $("#question-container").load("getQuestion.php", {
+            questionNewCount: questionCurrentCount
+          });
+        }
+      });
+    });
+  </script>
 
-    // Add a "Previous" button that reloads the page with the previous question
-    if ($index > 0) {
-        echo '<a class="prev-btn" href="?category=' . $category . '&q=' . ($index-1) . '">Previous</a>';
-    }
+  <script>
+    // hamburger menu head
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
 
-    // Add a "Next" button that reloads the page with the next question
-    if ($index < count($questions) - 1) {
-        echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Next</a>';
-    }
-    
-    if ($index >= count($questions) - 1) {
-      echo '<a class="next-btn" href="?category=' . $category . '&q=' . ($index+1) . '">Submit</a>';
-  }
-    echo '</div>';//question-container tail
-    
-} // marker 001 tail
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    })
 
-?>
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    })) // hamburger menu tail
+  </script>
 
-     <script>
-        const hamburger = document.querySelector(".hamburger");
-        const navMenu = document.querySelector(".nav-menu");
-
-        hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
-        })
-
-        document.querySelectorAll(".nav-link").forEach(n => n. 
-        addEventListener("click", () => {
-          hamburger.classList.remove("active");
-          navMenu.classList.remove("active");
-        }))
-      </script>
-     
-      <footer>
-        <p>&copy; 2023 Quizzlr </p>
-      </footer>
+  <footer>
+    <p>&copy; 2023 Quizzlr </p>
+  </footer>
 
 </body>
+
 </html>

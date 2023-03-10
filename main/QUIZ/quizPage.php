@@ -62,7 +62,7 @@
 
     <div class="card">
          <h2>Quiz Category 1</h2>
-         <p>Description for quiz category 1</p>
+         <p>General Knowledge</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
                 echo "<p>Please register your information before taking this quiz.</p>";
@@ -71,14 +71,14 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=1'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1'><button>Start Quiz</button></a>";
             }
          ?>   
       </div>
 
       <div class="card">
          <h2>Quiz Category 2</h2>
-         <p>Description for quiz category 2</p>
+         <p>Math</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
                echo "<p>Please register your information before taking this quiz.</p>";
@@ -87,14 +87,14 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=2'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 3</h2>
-         <p>Description for quiz category 3</p>
+         <p>English</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
             echo "<p>Please register your information before taking this quiz.</p>";
@@ -103,14 +103,14 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=3'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 4</h2>
-         <p>Description for quiz category 4</p>
+         <p>Science</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
                echo "<p>Please register your information before taking this quiz.</p>";
@@ -119,14 +119,14 @@
                   echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=4'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 5</h2>
-         <p>Description for quiz category 5</p>
+         <p>History</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
                echo "<p>Please register your information before taking this quiz.</p>";
@@ -135,14 +135,14 @@
                   echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=5'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>
 
       <div class="card">
          <h2>Quiz Category 6</h2>
-         <p>Description for quiz category 6</p>
+         <p>Social Sciences</p>
          <?php
             if (mysqli_num_rows($regi_check) == 0) {
                echo "<p>Please register your information before taking this quiz.</p>";
@@ -151,7 +151,7 @@
                echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/uploadQuiz.php?category=6'><button>Upload Quiz</button></a>";
             }
             else{
-               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6&q=0'><button>Start Quiz</button></a>";
+               echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6'><button>Start Quiz</button></a>";
             }
          ?>  
       </div>

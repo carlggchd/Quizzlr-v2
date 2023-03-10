@@ -60,7 +60,7 @@ body {
   }
 
   .submit-btn {
-      position: absolute;
+    position: absolute;
     bottom: 1%;
     right: 2%;
     background-color: rgb(165, 10, 10);
@@ -69,6 +69,20 @@ body {
     padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  .start-btn{
+    background-color: rgb(165, 10, 10);
+    color: #fff;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+ .start-container{
+    display: flex;
+    margin-top: 5%;
   }
 
 .question-container{
@@ -100,7 +114,7 @@ body {
 }
 
 .questionTitle{
-  font-size: large;
+  font-size:  40px;
   font-weight: bold;
 }
 
