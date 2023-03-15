@@ -67,77 +67,126 @@
     </nav>
   </header>
 
-  <div class="question-container" id="question-container">
+  <div class="btns-container" id="btns-container">
+    
+    <div class="start-btn" id="start-quiz-div"> <button id="start-quiz-btn">Start Quiz</button> </div>
+  </div>
 
-    <?php
-    $getCategory = $_SESSION['categoryNumber'];
 
-    $sql = "SELECT * FROM tbl_quiz_questions WHERE category = $getCategory ORDER BY question_number ASC LIMIT 1";
-    $result = mysqli_query($conn, $sql);
+  <?php
+  include '../../../../carlRandomizer/config/dbcon.php';
 
-    $questions = array();
-    $question_number = 0;
-    if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
-        //$row['question_number'] = $question_number; 
-        //$questions[] = $row;
-        //$question_number++;
-        echo "<p> ";
-        echo "Question # : " . $row['question_number'];
-        echo "<br>";
-        echo $row['question'];
-        echo "</p>";
-      }
-    } else {
-      echo "reached maximum questions!";
+  $getCategory = $_SESSION['categoryNumber'];
+
+  $sql = "SELECT * FROM tbl_quiz_questions WHERE category = $getCategory ORDER BY question_number ASC";
+  $result = mysqli_query($conn, $sql);
+
+  $questions = array();
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $questions[] = $row;
     }
-    ?>
-  </div>
+  } else {
+    echo "<br><center>NO QUIZ UPLOADED in " . strtoupper($category_name) . " ! </center>" ;
+    echo "<style>#btns-container {display: none;}</style>";
+  }
 
-  <div class="start-container" id="start-container">
+  $html = '';
+  foreach ($questions as $index => $question) {
+    $html .= '<div class="question-container" id="question-container" style="' . ($index == 0 ? 'display: block;' : 'display: none;') . '">';
+        $html .= '<div class="question">';
+            $html .= '<h3>Question #: ' . $question['question_number'] . '</h3>';
+            $html .= '<p>' . $question['question'] . '</p>';
+            $html .= '<div class="choices-container">';
+              $html .= '<ul>';
+                $html .= '<div class="left-column">';
+                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_a" name="answer_' . $question['question_number'] . '" value="A"> <label for="answer_' . $question['question_number'] . '_a">A. ' . $question['choice_a'] . '</label></li>';
+                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_b" name="answer_' . $question['question_number'] . '" value="B"> <label for="answer_' . $question['question_number'] . '_b">B. ' . $question['choice_b'] . '</label></li>';
+                $html .= '</div>';
+                $html .= '<div class="right-column">';
+                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_c" name="answer_' . $question['question_number'] . '" value="C"> <label for="answer_' . $question['question_number'] . '_c">C. ' . $question['choice_c'] . '</label></li>';
+                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_d" name="answer_' . $question['question_number'] . '" value="D"> <label for="answer_' . $question['question_number'] . '_d">D. ' . $question['choice_d'] . '</label></li>';
+                $html .= '</div>';
+              $html .= '</ul>';
+            $html .= '</div>';
+        $html .= '</div>';
+    $html .= '</div>';
+  }
 
-    <div class="start-btn" id="start-btn"> <button id="hide-quiz-btn">Previous</button> </div>
-    <div class="start-btn" id="start-btn"> <button id="show-quiz-btn">Next</button> </div>
-  </div>
+  $html .= '<button class="prev-btn" style="display: none;">Previous</button>';
+  $html .= '<button class="next-btn">Next</button>';
+  $html .= '<button class="submit-btn" style="display: none;">Submit</button>';
+  echo $html;
+?>
+
 
   <script>
-    //jquery
-    $(document).ready(function() {
-      var questionCurrentCount = 1;
-      var questionMaxCount = 30; // set this to the maximum number of questions
-      $('#show-quiz-btn').click(function() {
-        if (questionCurrentCount <= questionMaxCount) {
-          $("#question-container").load("getQuestion.php", {
-            questionNewCount: questionCurrentCount
-          });
-          questionCurrentCount++;
-        }
+   //jquery for navigation buttons
+   $(document).ready(function() {
+      $('#question-container').hide();
+      $('.next-btn').hide();
+     
+      $('#start-quiz-btn').click( function() {
+        $('#question-container').show();
+        $('#start-quiz-div').hide();
+        $('.next-btn').show();
       });
-      $('#hide-quiz-btn').click(function() {
-        if (questionCurrentCount > 1) {
-          questionCurrentCount--;
-          $("#question-container").load("getQuestion.php", {
-            questionNewCount: questionCurrentCount
-          });
-        }
-      });
+      var questionCounter = 2;
+      $(".next-btn").click(function() {
+      var currentQuestionContainer = $(".question-container:visible");
+      
+      currentQuestionContainer.hide();
+      currentQuestionContainer.next().show();
+      
+      $(".prev-btn").show();
+      if (currentQuestionContainer.next().length == 0 || questionCounter ==30) {
+        $(".next-btn").hide();
+        $(".submit-btn").show(); 
+         
+      }
+        questionCounter++;
+        console.log(questionCounter);
     });
+
+    $(".prev-btn").click(function() {
+      var currentQuestionContainer = $(".question-container:visible");
+      currentQuestionContainer.hide();
+      currentQuestionContainer.prev().show();
+      
+      $(".next-btn").show();
+      if (currentQuestionContainer.prev().length == 0 || questionCounter <=3) {
+        $(".prev-btn").hide();
+        $(".next-btn").show();
+      }
+      else if (questionCounter <=31){
+          $(".submit-btn").hide(); 
+          $(".next-btn").show();
+          $(".prev-btn").show();
+        }
+      questionCounter--;
+      console.log(questionCounter);
+    });
+
+   
+   });
+
+
   </script>
 
   <script>
     // hamburger menu head
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    })
-
-    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    })) // hamburger menu tail
+  $(document).ready(function(){
+  $(".hamburger").click(function(){
+    $(this).toggleClass("active");
+    $(".nav-menu").toggleClass("active");
+  });
+  
+  $(".nav-link").click(function(){
+    $(".hamburger").removeClass("active");
+    $(".nav-menu").removeClass("active");
+  });
+});
+ // hamburger menu tail
   </script>
 
   <footer>

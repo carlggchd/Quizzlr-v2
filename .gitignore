@@ -4,3 +4,4 @@ composer.lock
 vendor
 main/QUIZ/quizCategories/submitQuiz.php
 main/QUIZ/quizCategories/hideQuestion.php
+main/QUIZ/quizCategories/getQuestion.php
