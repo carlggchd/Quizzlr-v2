@@ -92,6 +92,7 @@
   }
 
   $html = '';
+  $tempAnswers = array();
   foreach ($questions as $index => $question) {
     $html .= '<div class="question-container" id="question-container" style="' . ($index == 0 ? 'display: block;' : 'display: none;') . '">';
         $html .= '<div class="question">';
@@ -111,6 +112,9 @@
             $html .= '</div>';
         $html .= '</div>';
     $html .= '</div>';
+
+    array_push($tempAnswers, "answer_" . $question['question_number']);
+
   }
 
   $html .= '<button class="prev-btn" style="display: none;">Previous</button>';
@@ -137,15 +141,13 @@
       
       currentQuestionContainer.hide();
       currentQuestionContainer.next().show();
-      
+        
       $(".prev-btn").show();
       if (currentQuestionContainer.next().length == 0 || questionCounter ==30) {
         $(".next-btn").hide();
         $(".submit-btn").show(); 
-         
       }
         questionCounter++;
-        console.log(questionCounter);
     });
 
     $(".prev-btn").click(function() {
@@ -164,10 +166,46 @@
           $(".prev-btn").show();
         }
       questionCounter--;
-      console.log(questionCounter);
     });
 
-   
+
+  var answers = [];
+$("input[type='radio']").click(function() {
+  var answer = $(this).val(); // get the selected answer
+  var index = $.inArray($(this).attr("name"), <?php echo json_encode($tempAnswers); ?>);
+  if (index >= 0) {
+    answers[index] = answer; // update the array with the user's answer
+  }
+  console.log("user answer: "+answer);
+  console.log("question num: "+index);
+});
+
+// event listener for submit button
+$(".submit-btn").click(function() {
+  // check if all questions have been answered
+  var all_answered = true;
+  var unanswered_questions = [];
+  for (var i = 0; i < <?php echo count($tempAnswers); ?>; i++) {
+    if (!answers[i]) {
+      all_answered = false;
+      unanswered_questions.push(i+1);
+      // break;
+    }
+  }
+
+  if (all_answered) {
+    // display success message before submitting quiz to database
+    confirm("All questions answered! are you sure you want to submit?");
+  } else {
+    // display an error message and highlight the unanswered questions
+    var message = "Please answer the following questions before proceeding:\n";
+    for (var i = 0; i < unanswered_questions.length; i++) {
+      message += "- Question #" + unanswered_questions[i] + "\n";
+    }
+    alert(message);
+  }
+});
+  
    });
 
 
