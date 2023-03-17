@@ -18,7 +18,6 @@
   session_start();
   include '../../../../carlRandomizer/config/dbcon.php';
 
-
   $category = $_GET['category'];
   $category_text = [
     1 => 'General Knowledge',
@@ -177,7 +176,7 @@ $("input[type='radio']").click(function() {
     answers[index] = answer; // update the array with the user's answer
   }
   console.log("user answer: "+answer);
-  console.log("question num: "+index);
+  console.log("question num: "+(index+1));
 });
 
 // event listener for submit button
@@ -193,21 +192,30 @@ $(".submit-btn").click(function() {
     }
   }
 
-  if (all_answered) {
-    // display success message before submitting quiz to database
-    confirm("All questions answered! are you sure you want to submit?");
+
+  if (!all_answered) {
+    alert("Please answer all questions before submitting.\nUnanswered questions: " + unanswered_questions.join(", "));
   } else {
-    // display an error message and highlight the unanswered questions
-    var message = "Please answer the following questions before proceeding:\n";
-    for (var i = 0; i < unanswered_questions.length; i++) {
-      message += "- Question #" + unanswered_questions[i] + "\n";
-    }
-    alert(message);
+    if (confirm('Are you sure you want to submit the quiz?')) {
+    // make an AJAX call to the server
+    $.ajax({
+      url: 'submitQuiz.php',
+      type: 'POST',
+      data: {answers: answers},
+      success: function(response) {
+        alert('Answers saved!');
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+        alert('Error saving answers');
+      }
+    });
   }
+  }
+
 });
   
    });
-
 
   </script>
 
