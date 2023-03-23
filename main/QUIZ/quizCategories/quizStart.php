@@ -192,7 +192,6 @@ $(".submit-btn").click(function() {
     }
   }
 
-
   if (!all_answered) {
     alert("Please answer all questions before submitting.\nUnanswered questions: " + unanswered_questions.join(", "));
   } else {
@@ -203,7 +202,11 @@ $(".submit-btn").click(function() {
       type: 'POST',
       data: {answers: answers},
       success: function(response) {
-        alert('Answers saved!');
+        if (response.trim() === 'Answers saved!') {
+          alert('Answers saved to database!');
+        } else {
+          alert('Answers already submitted for this category!');
+        }
       },
       error: function(xhr, status, error) {
         console.log(xhr.responseText);
