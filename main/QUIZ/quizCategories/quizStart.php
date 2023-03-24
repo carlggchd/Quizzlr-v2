@@ -201,10 +201,23 @@ $(".submit-btn").click(function() {
       url: 'submitQuiz.php',
       type: 'POST',
       data: {answers: answers},
-      success: function(response) {
+      success: function(response) { 
         if (response.trim() === 'Answers saved!') {
-          alert('Answers saved to database!');
-        } else {
+            // quiz submitted successfully, retrieve and display the score
+            $.ajax({
+              url: 'getScore.php',
+              type: 'POST',
+              data: {category: <?php echo $getCategory; ?>},
+              success: function(score) {
+                alert('Answers saved to database!');
+                alert('Your score is: ' + score);
+              },
+              error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+                alert('Error getting score');
+              }
+            });
+          }  else {
           alert('Answers already submitted for this category!');
         }
       },
