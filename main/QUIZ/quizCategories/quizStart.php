@@ -85,36 +85,39 @@
     while ($row = mysqli_fetch_assoc($result)) {
       $questions[] = $row;
     }
+    shuffle($questions);
   } else {
     echo "<br><center>NO QUIZ UPLOADED in " . strtoupper($category_name) . " ! </center>" ;
     echo "<style>#btns-container {display: none;}</style>";
   }
 
   $html = '';
-  $tempAnswers = array();
-  foreach ($questions as $index => $question) {
-    $html .= '<div class="question-container" id="question-container" style="' . ($index == 0 ? 'display: block;' : 'display: none;') . '">';
-        $html .= '<div class="question">';
-            $html .= '<h3>Question #: ' . $question['question_number'] . '</h3>';
-            $html .= '<p>' . $question['question'] . '</p>';
-            $html .= '<div class="choices-container">';
-              $html .= '<ul>';
-                $html .= '<div class="left-column">';
-                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_a" name="answer_' . $question['question_number'] . '" value="A"> <label for="answer_' . $question['question_number'] . '_a">A. ' . $question['choice_a'] . '</label></li>';
-                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_b" name="answer_' . $question['question_number'] . '" value="B"> <label for="answer_' . $question['question_number'] . '_b">B. ' . $question['choice_b'] . '</label></li>';
-                $html .= '</div>';
-                $html .= '<div class="right-column">';
-                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_c" name="answer_' . $question['question_number'] . '" value="C"> <label for="answer_' . $question['question_number'] . '_c">C. ' . $question['choice_c'] . '</label></li>';
-                  $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_d" name="answer_' . $question['question_number'] . '" value="D"> <label for="answer_' . $question['question_number'] . '_d">D. ' . $question['choice_d'] . '</label></li>';
-                $html .= '</div>';
-              $html .= '</ul>';
-            $html .= '</div>';
-        $html .= '</div>';
-    $html .= '</div>';
+$tempAnswers = array();
+foreach ($questions as $index => $question) {
+  $choices = array($question['choice_a'], $question['choice_b'], $question['choice_c'], $question['choice_d']);
+  shuffle($choices);
 
-    array_push($tempAnswers, "answer_" . $question['question_number']);
+  $html .= '<div class="question-container" id="question-container" style="' . ($index == 0 ? 'display: block;' : 'display: none;') . '">';
+      $html .= '<div class="question">';
+          $html .= '<h3>Question #: ' . $question['question_number'] . '</h3>';
+          $html .= '<p>' . $question['question'] . '</p>';
+          $html .= '<div class="choices-container">';
+            $html .= '<ul>';
+              $html .= '<div class="left-column">';
+              $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_a" name="answer_' . $question['question_number'] . '" value="A"> <label for="answer_' . $question['question_number'] . '_a">A. ' . $choices[0] . '</label></li>';
+              $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_b" name="answer_' . $question['question_number'] . '" value="B"> <label for="answer_' . $question['question_number'] . '_b">B. ' . $choices[1] . '</label></li>';
+              $html .= '</div>';
+              $html .= '<div class="right-column">';
+              $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_c" name="answer_' . $question['question_number'] . '" value="C"> <label for="answer_' . $question['question_number'] . '_c">C. ' . $choices[2] . '</label></li>';
+              $html .= '<li><input type="radio" id="answer_' . $question['question_number'] . '_d" name="answer_' . $question['question_number'] . '" value="D"> <label for="answer_' . $question['question_number'] . '_d">D. ' . $choices[3] . '</label></li>';
+              $html .= '</div>';
+            $html .= '</ul>';
+          $html .= '</div>';
+      $html .= '</div>';
+  $html .= '</div>';
 
-  }
+  array_push($tempAnswers, "answer_" . $question['question_number']);
+}
 
   $html .= '<button class="prev-btn" style="display: none;">Previous</button>';
   $html .= '<button class="next-btn">Next</button>';
