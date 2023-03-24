@@ -1,4 +1,5 @@
 <?php
+
 include '../../../../carlRandomizer/config/dbcon.php';
 
 session_start();
@@ -10,19 +11,24 @@ $sql_check = "SELECT * FROM tbl_quiz_scores WHERE student_id = $student_id AND c
 $result_check = mysqli_query($conn, $sql_check);
 $num_rows = mysqli_num_rows($result_check);
 
+$total_questions_front = 0;
+
+// Get the total number of questions for this category
+$sql = "SELECT COUNT(*) FROM tbl_quiz_questions WHERE category = $category";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+$total_questions = $row[0];
+
+$total_questions_front = $total_questions;
+
 if ($num_rows > 0) {
   // User has already submitted answers for this category, retrieve and display previous score
   $row = mysqli_fetch_assoc($result_check);
   $score = $row['score'];
-  echo "You have already submitted answers for this category. Your previous score was $score.";
+  echo "You have already submitted answers for this category. Your previous score was $score out of $total_questions_front.";
 } else {
   // User has not submitted answers for this category, proceed with submitting answers and saving score
-  $sql = "SELECT COUNT(*) FROM tbl_quiz_questions WHERE category = $category";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_array($result);
-  $total_questions = $row[0];
-
- $sql2 = "SELECT COUNT(*) 
+  $sql2 = "SELECT COUNT(*) 
         FROM tbl_quiz_answers 
         JOIN tbl_quiz_questions ON tbl_quiz_questions.question_number = tbl_quiz_answers.question_number 
         AND tbl_quiz_questions.category = tbl_quiz_answers.category 
@@ -42,7 +48,7 @@ if ($num_rows > 0) {
 
   if ($result_save) {
     // quiz submitted successfully, retrieve and display the score
-    echo "You scored $total_correct out of $total_questions which is $score%";
+    echo "You scored $total_correct out of $total_questions_front which is $score%";
 } else {
     echo "Error saving score";
   }

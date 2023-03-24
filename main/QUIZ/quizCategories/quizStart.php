@@ -201,35 +201,51 @@ $(".submit-btn").click(function() {
       url: 'submitQuiz.php',
       type: 'POST',
       data: {answers: answers},
-      success: function(response) { 
-        if (response.trim() === 'Answers saved!') {
-            // quiz submitted successfully, retrieve and display the score
-            $.ajax({
-              url: 'getScore.php',
-              type: 'POST',
-              data: {category: <?php echo $getCategory; ?>},
-              success: function(score) {
-                alert('Answers saved to database!');
-                alert('Your score is: ' + score);
-              },
-              error: function(xhr, status, error) {
-                console.log(xhr.responseText);
-                alert('Error getting score');
-              }
-            });
-          }  else {
-          alert('Answers already submitted for this category!');
-        }
+      success: function(response) {
+      if (response.trim() === 'Answers saved!') {
+      // quiz submitted successfully, retrieve and display the score
+      $.ajax({
+      url: 'getScore.php',
+      type: 'POST',
+      data: {category: <?php echo $getCategory; ?>},
+      success: function(score) {
+      alert('Answers saved to database!');
+      alert(score);
       },
       error: function(xhr, status, error) {
-        console.log(xhr.responseText);
-        alert('Error saving answers');
+      console.log(xhr.responseText);
+      alert('Error getting score');
+      }
+      });
+      } else {
+      // display a message indicating that answers have already been submitted for this category
+
+          // retrieve and display the previous score
+          $.ajax({
+            url: 'getScore.php',
+            type: 'POST',
+            data: {category: <?php echo $getCategory; ?>},
+            success: function(score) {
+              alert(score);
+              alert("You will be redirected to the quiz page!");
+              window.location.replace("../../../../carlRandomizer/main/QUIZ/quizPage.php");
+            },
+            error: function(xhr, status, error) {
+              console.log(xhr.responseText);
+              alert('Error getting score');
+            }
+          });
+      }
+      },
+      error: function(xhr, status, error) {
+      console.log(xhr.responseText);
+      alert('Error saving answers');
       }
     });
-  }
-  }
+      }
+      }
 
-});
+    });
   
    });
 

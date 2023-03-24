@@ -24,6 +24,20 @@
                if(isset($_SESSION['username'])){
                   echo "Welcome, ".$_SESSION['username']."!";
                }
+               
+               function showScore($student_id, $category) {
+                  include '../../../carlRandomizer/config/dbcon.php';
+                  $scoreQuery = "SELECT score FROM tbl_quiz_scores WHERE student_id=$student_id AND category = $category";
+                  $scoreResult = mysqli_query($conn, $scoreQuery);
+                  $row = mysqli_fetch_assoc($scoreResult);
+                  if ($row !== null) {
+                      $score = $row['score'];
+                      return $score;
+                  } else {
+                      return 'N/A';
+                  }
+              }
+
                // function for checking if user is admin or not
                  function isAdmin($student_id) { 
                   include '../../../carlRandomizer/config/dbcon.php';
@@ -85,7 +99,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 1);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 1) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=1'><button>Start Quiz</button></a>";
                }
@@ -110,7 +124,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 2);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 2) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=2'><button>Start Quiz</button></a>";
                }
@@ -135,7 +149,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 3);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 3) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=3'><button>Start Quiz</button></a>";
                }
@@ -160,7 +174,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 4);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 4) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=4'><button>Start Quiz</button></a>";
                }
@@ -185,7 +199,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 5);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 5) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=5'><button>Start Quiz</button></a>";
                }
@@ -210,7 +224,7 @@
             else{
                $answered = isCategoryAnswered($student_id, 6);
                if ($answered) {
-                  echo '<button onclick="alert(\'Quiz already answered!\')">Quiz Answered</button>';
+                  echo '<button onclick="alert(\'Quiz already answered! Your score is ' . showScore($student_id, 6) .'.\')">Quiz Answered</button>';
                } else {
                    echo "<a href='../../../carlRandomizer/main/QUIZ/quizCategories/quizStart.php?category=6'><button>Start Quiz</button></a>";
                }
